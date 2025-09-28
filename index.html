@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Palette Picker — Playground</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Palette Picker</h1>
+    <div class="actions">
+      <a href="https://www.habbiwebdesign.site/" class="btn outline" target="_blank" rel="noopener noreferrer">Habbi Web Design</a>
+      <a href="#about" class="btn">About</a>
+      <button id="copyCssBtn" class="btn">Copy CSS Variables</button>
+      <button id="downloadJsonBtn" class="btn">Download tokens.json</button>
+      <button id="shareBtn" class="btn">Share</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <aside class="controls">
+      <section class="grid-2">
+        <label class="field">
+          <span>Theme</span>
+          <select id="themeSelect">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Mood</span>
+          <input id="moodRange" type="range" min="0" max="100" value="50" />
+        </label>
+      </section>
+      <section>
+        <label class="field">
+          <span>Mode</span>
+          <select id="modeSelect">
+            <option value="bold">Bold Brand</option>
+            <option value="editorial">Editorial Calm</option>
+            <option value="neoglass">Neo Glass</option>
+            <option value="minimal">Minimal Pro</option>
+            <option value="playful">Playful</option>
+            <option value="elegant-dark">Elegant Dark</option>
+          </select>
+        </label>
+      </section>
+      <section>
+        <label class="field">
+          <span>Accent Style</span>
+          <select id="harmonySelect">
+            <option value="complementary">Complementary</option>
+            <option value="analogous">Analogous</option>
+            <option value="split">Split-Complementary</option>
+          </select>
+        </label>
+      </section>
+      <section class="inline-actions">
+        <button id="randomBtn" class="btn secondary">Randomize</button>
+        <button id="accessibleBtn" class="btn secondary">Make Accessible</button>
+      </section>
+
+      <section class="contrast">
+        <h3>Contrast</h3>
+        <ul id="contrastList" class="contrast-list"></ul>
+      </section>
+
+      <section class="customize">
+        <div class="head">
+          <h3>Customize Tokens</h3>
+          <div class="inline-actions">
+            <button id="resetOverridesBtn" class="btn secondary">Reset All</button>
+          </div>
+        </div>
+        <div class="color-grid">
+          <label class="color-field">
+            <span>Background</span>
+            <div class="row">
+              <input id="tok-bg" type="color" />
+              <code id="val-bg" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Surface</span>
+            <div class="row">
+              <input id="tok-surface" type="color" />
+              <code id="val-surface" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Text</span>
+            <div class="row">
+              <input id="tok-text" type="color" />
+              <code id="val-text" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Muted</span>
+            <div class="row">
+              <input id="tok-muted" type="color" />
+              <code id="val-muted" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Primary</span>
+            <div class="row">
+              <input id="tok-primary" type="color" />
+              <code id="val-primary" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Accent</span>
+            <div class="row">
+              <input id="tok-accent" type="color" />
+              <code id="val-accent" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Success</span>
+            <div class="row">
+              <input id="tok-success" type="color" />
+              <code id="val-success" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Warning</span>
+            <div class="row">
+              <input id="tok-warn" type="color" />
+              <code id="val-warn" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Danger</span>
+            <div class="row">
+              <input id="tok-danger" type="color" />
+              <code id="val-danger" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Border</span>
+            <div class="row">
+              <input id="tok-border" type="color" />
+              <code id="val-border" class="val">#000000</code>
+            </div>
+          </label>
+          <label class="color-field">
+            <span>Ring</span>
+            <div class="row">
+              <input id="tok-ring" type="color" />
+              <code id="val-ring" class="val">#000000</code>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section>
+        <h3>Tokens</h3>
+        <div id="tokensView" class="tokens-view"></div>
+      </section>
+    </aside>
+
+    <section class="preview">
+      <div class="nav">
+        <div class="brand">Your Brand</div>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">Features</a>
+          <a href="#">Pricing</a>
+        </nav>
+        <button class="btn primary">Get Started</button>
+      </div>
+
+      <div class="hero card">
+        <h2>Make something beautiful</h2>
+        <p>Design impressive palettes effortlessly. Your chosen color guides the rest.</p>
+        <div class="actions">
+          <button class="btn primary">Primary Action</button>
+          <button class="btn outline">Secondary</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Card Title</h3>
+          <p>Surface content lives here with comfortable contrast.</p>
+          <div class="badges">
+            <span class="badge info">Info</span>
+            <span class="badge success">Success</span>
+            <span class="badge warn">Warning</span>
+            <span class="badge danger">Danger</span>
+          </div>
+        </div>
+        <div class="card">
+          <form onsubmit="return false;">
+            <label class="field">
+              <span>Email</span>
+              <input type="email" placeholder="name@example.com" autocomplete="username"/>
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <input type="password" autocomplete="current-password"/>
+            </label>
+            <button type="button" class="btn primary full">Sign in</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="showcase">
+        <div class="card">
+          <h3>Typography & Links</h3>
+          <p>Paragraph text with a <a class="link" href="#">link example</a>. Small text <small>(muted)</small> and a <strong>bold callout</strong>.</p>
+          <blockquote class="quote">Good color choices are invisible. Bad ones are all you notice.</blockquote>
+        </div>
+
+        <div class="card">
+          <h3>Buttons</h3>
+          <div class="actions">
+            <button class="btn primary">Primary</button>
+            <button class="btn outline">Outline</button>
+            <button class="btn ghost">Ghost</button>
+            <button class="btn" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="tabs">
+            <button class="tab active">Overview</button>
+            <button class="tab">Details</button>
+            <button class="tab">Reviews</button>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr><th>Name</th><th>Status</th><th>Role</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Jane</td><td><span class="badge success">Active</span></td><td>Admin</td></tr>
+                <tr><td>Ken</td><td><span class="badge warn">Pending</span></td><td>Editor</td></tr>
+                <tr><td>Ada</td><td><span class="badge danger">Blocked</span></td><td>Viewer</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card grid-2">
+          <div>
+            <h4>Alerts</h4>
+            <div class="alert info">Heads up — new update available.</div>
+            <div class="alert success">Saved! Your changes are live.</div>
+            <div class="alert warn">Warning — check your settings.</div>
+            <div class="alert danger">Error — something went wrong.</div>
+          </div>
+          <div>
+            <h4>Form Bits</h4>
+            <label class="check"><input type="checkbox" checked /> Remember me</label>
+            <label class="check"><input type="radio" name="r" checked /> Option A</label>
+            <label class="check"><input type="radio" name="r" /> Option B</label>
+            <label class="switch"><input type="checkbox" checked /><span></span> Enable feature</label>
+
+            <h4>Progress</h4>
+            <div class="progress"><div class="bar" style="width:62%"></div></div>
+            <div class="skeleton-row">
+              <div class="skeleton circle"></div>
+              <div class="skeleton w-60"></div>
+            </div>
+            <div class="skeleton w-90"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Code Block</h3>
+          <pre class="code-block"><code>const theme = {
+  bg: 'var(--bg)',
+  text: 'var(--text)',
+  primary: 'var(--primary)',
+};</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="preview">
+      <div class="card">
+        <h3>About</h3>
+        <p>Palette Picker is a simple, beginner‑friendly playground that turns one color into a complete, accessible UI palette. Pick a vibe, tune the mood, and export variables or tokens for your project.</p>
+        <p>Created by <a class="link" href="https://www.habbiwebdesign.site/" target="_blank" rel="noopener noreferrer">Habbi Web Design</a>. Visit the site to see more tools and work.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>WCAG AA by default. Modes craft distinct vibes automatically.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

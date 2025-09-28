@@ -48,6 +48,8 @@ body {
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .inline-actions { display: flex; gap: 8px; }
+/* make inline actions wrap when space is tight */
+.inline-actions { flex-wrap: wrap; }
 
 .btn { 
   border: 1px solid var(--border); background: var(--surface); color: var(--text);
@@ -147,4 +149,40 @@ body {
   .app-main { grid-template-columns: 1fr; }
   .controls { position: static; }
   .grid { grid-template-columns: 1fr; }
+  /* header stacks and actions wrap */
+  .app-header { flex-wrap: wrap; gap: 12px; }
+  .app-header h1 { flex: 1 1 100%; margin: 0; }
+  .app-header .actions { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+  .app-header .actions .btn { flex: 1 1 auto; }
+  /* nav stacks into rows */
+  .nav { grid-template-columns: 1fr; gap: 10px; }
+  .nav nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  .nav a { margin: 0; }
+  .nav .btn.primary { justify-self: start; width: 100%; }
+  /* grids collapse */
+  .color-grid, .tokens-view { grid-template-columns: 1fr; }
+  .inline-actions { gap: 6px; }
+  .hero .actions { flex-wrap: wrap; }
+  .app-main { padding: 12px; }
+  /* tabs become scrollable */
+  .tabs { overflow-x: auto; white-space: nowrap; }
+  .tab { white-space: nowrap; }
+  /* table density on small screens */
+  .table th, .table td { padding: 6px 8px; }
+  /* footer centers */
+  .app-footer { flex-wrap: wrap; justify-content: center; text-align: center; }
+}
+
+@media (max-width: 720px) {
+  .btn { padding: 9px 10px; }
+  .nav { padding: 10px 12px; }
+  .badges { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+  .app-header { padding: 12px; }
+  .card { padding: 12px; }
+  .hero .actions .btn { flex: 1 1 100%; }
+  .nav nav { gap: 6px; }
 }

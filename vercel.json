@@ -1,5 +1,10 @@
 {
   "version": 2,
-  "builds": [{ "src": "index.html", "use": "@vercel/static" }],
-  "routes": [{ "src": "/(.*)", "dest": "/$1" }]
+  "routes": [
+    { "src": "/styles.css", "dest": "/palette-picker/styles.css" },
+    { "src": "/script.js", "dest": "/palette-picker/script.js" },
+    { "src": "/favicon.svg", "dest": "/palette-picker/favicon.svg" },
+    { "src": "/", "dest": "/palette-picker/index.html" },
+    { "src": "/(.*)", "dest": "/palette-picker/$1" }
+  ]
 }
